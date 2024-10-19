@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34525.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMCSPOE", "CMCSPOE\CMCSPOE.csproj", "{D8953D98-2E8B-443A-BBE7-29CF3C32579B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CMCSPOE.Tests", "CMCSPOE.Tests\CMCSPOE.Tests.csproj", "{CF58CE0E-9E18-4A2B-AA42-A49B7F88C234}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D8953D98-2E8B-443A-BBE7-29CF3C32579B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8953D98-2E8B-443A-BBE7-29CF3C32579B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8953D98-2E8B-443A-BBE7-29CF3C32579B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8953D98-2E8B-443A-BBE7-29CF3C32579B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF58CE0E-9E18-4A2B-AA42-A49B7F88C234}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF58CE0E-9E18-4A2B-AA42-A49B7F88C234}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF58CE0E-9E18-4A2B-AA42-A49B7F88C234}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF58CE0E-9E18-4A2B-AA42-A49B7F88C234}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {35FAB863-04E4-470C-95BB-423F2B485974}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,100 @@
+﻿@model IEnumerable<CMCSPOE.Models.Claim>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Your Claim</title>
+    <style>
+        body {
+            font-family: "Times New Roman", serif;
+            background-color: #f7efd5; 
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #664229; 
+            margin-bottom: 20px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #b89f86;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+            background-color: #fff8e6; 
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea,
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #b89f86; 
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #8bc34a;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            input[type="submit"]:hover {
+                background-color: #7cb342; 
+            }
+    </style>
+</head>
+<body>
+
+    <h2>Submit Your Claim</h2>
+    <form asp-action="SubmitClaim" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="lecturerName">Lecturer Name</label>
+            <input type="text" id="lecturerName" name="LecturerName" required />
+        </div>
+        <div class="form-group">
+            <label for="hoursWorked">Hours Worked</label>
+            <input type="number" id="hoursWorked" name="HoursWorked" required />
+        </div>
+        <div class="form-group">
+            <label for="hourlyRate">Hourly Rate</label>
+            <input type="number" name="HourlyRate" step="0.01" min="0" required />
+        </div>
+        <div class="form-group">
+            <label for="additionalNotes">Additional Notes</label>
+            <textarea id="additionalNotes" name="AdditionalNotes"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="supportingDocument">Upload Supporting Document</label>
+            <input type="file" id="supportingDocument" name="SupportingDocument" accept=".pdf,.docx,.xlsx" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Submit Claim" />
+        </div>
+    </form>
+
+</body>
+</html>
