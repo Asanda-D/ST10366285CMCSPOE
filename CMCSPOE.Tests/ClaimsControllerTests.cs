@@ -29,7 +29,7 @@ namespace CMCSPOE.Tests
 
             _controller = new ClaimsController(_context);
 
-            // fill database with test data
+            // fill database with some test data
             SeedDatabase();
         }
 
@@ -73,7 +73,7 @@ namespace CMCSPOE.Tests
             var viewResult = Assert.IsType<ViewResult>(result);
             var model = Assert.IsAssignableFrom<List<Claim>>(viewResult.ViewData.Model);
 
-            // Check if model contains expected number of claims
+            // Check if model contains the expected number of claims
             Assert.Equal(2, model.Count);
         }
     }
