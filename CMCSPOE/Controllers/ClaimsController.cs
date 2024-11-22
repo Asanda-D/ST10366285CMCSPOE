@@ -1,7 +1,9 @@
 ﻿using CMCSPOE.Data.Migrations;
 using CMCSPOE.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text;
 
 namespace CMCSPOE.Controllers
 {
@@ -252,9 +254,55 @@ namespace CMCSPOE.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
         private bool ClaimExists(int id)
         {
             return _context.Claim.Any(e => e.ClaimId == id);
+        }
+        [Authorize(Roles = "HR")]
+        public async Task<IActionResult> LecturerSummary()
+        {
+            var lecturerClaims = await _context.Claim
+                .GroupBy(c => c.LecturerName)
+                .Select(group => new LecturerSummaryViewModel
+                {
+                    LecturerName = group.Key,
+                    TotalOwed = group.Sum(c => c.HoursWorked * c.HourlyRate),
+                    HoursWorked = group.Sum(c => c.HoursWorked),
+                    HourlyRate = group.Average(c => c.HourlyRate),
+                    AdditionalNotes = string.Join(", ", group.Select(c => c.AdditionalNotes)), // Combine notes
+                    SubmittedDate = group.Max(c => c.SubmittedDate), // Get the latest submitted date
+                })
+                .ToListAsync();
+
+            return View(lecturerClaims);
+        }
+        // 
+
+        public async Task<IActionResult> DownloadLecturerReport(string lecturerName)
+        {
+            // Get lecturer claims from the database
+            var lecturerClaims = await _context.Claim
+                .Where(c => c.LecturerName == lecturerName)
+                .ToListAsync();
+
+            if (lecturerClaims == null || !lecturerClaims.Any())
+            {
+                return NotFound();
+            }
+
+            // Create CSV content
+            var csvContent = new StringBuilder();
+            csvContent.AppendLine("Lecturer Name,Hours Worked,Hourly Rate,Total Owed,Additional Notes,Submitted Date,Status");
+
+            foreach (var claim in lecturerClaims)
+            {
+                csvContent.AppendLine($"{claim.LecturerName},{claim.HoursWorked},{claim.HourlyRate},{claim.HoursWorked * claim.HourlyRate},\"{claim.AdditionalNotes}\",{claim.SubmittedDate.ToShortDateString()},{claim.Status}");
+            }
+
+            // Return the CSV file as a download
+            var fileName = $"{lecturerName}_ClaimsReport_{DateTime.Now:yyyyMMdd}.csv";
+            return File(Encoding.UTF8.GetBytes(csvContent.ToString()), "text/csv", fileName);
         }
     }
 }
