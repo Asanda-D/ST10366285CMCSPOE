@@ -1,0 +1,81 @@
+﻿@model IEnumerable<CMCSPOE.Models.LecturerSummaryViewModel>
+
+@{
+    ViewData["Title"] = "Lecturer Claims Summary";
+}
+
+<style>
+    body {
+        background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEDBtz7POp7XtbIvrstzwpCl5_ZUwlsk6mTw&s);
+        );
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+        font-family: Arial, sans-serif;
+        color: #333;
+    }
+
+    .content-wrapper {
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 15px;
+        padding: 20px;
+        margin: 30px auto;
+        max-width: 1200px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .table th {
+        background-color: #007BFF;
+        color: white;
+    }
+
+    .table td, .table th {
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .btn-primary {
+        background-color: #007BFF;
+        border-color: #007BFF;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+</style>
+
+<div class="content-wrapper">
+    <h1 class="text-center">Lecturer Claims Summary</h1>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Lecturer Name</th>
+                <th>Total Owed</th>
+                <th>Total Hours Worked</th>
+                <th>Average Hourly Rate</th>
+                <th>Additional Notes</th>
+                <th>Last Submitted Date</th>
+                <th>Download Report</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.LecturerName</td>
+                    <td>@item.TotalOwed.ToString("C")</td>
+                    <td>@item.HoursWorked</td>
+                    <td>@item.HourlyRate.ToString("C")</td>
+                    <td>@item.AdditionalNotes</td>
+                    <td>@item.SubmittedDate.ToShortDateString()</td>
+                    <td>
+                        <a href="@Url.Action("DownloadLecturerReport", "Claims", new { lecturerName = item.LecturerName })" class="btn btn-primary">
+                            Download Report
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
