@@ -31,7 +31,6 @@ a {
         border-color: #cc5b00; 
     }
 
-/* Active nav link styling */
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
     color: #fff; 
@@ -39,7 +38,6 @@ a {
     border-color: #e66b00; 
 }
 
-/* Border styles */
 .border-top {
     border-top: 1px solid rgba(255, 255, 255, 0.5);
 }
@@ -53,7 +51,6 @@ a {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Button is for accepting policy */
 button.accept-policy {
     font-size: 1rem;
     line-height: inherit;
